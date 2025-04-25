@@ -1,9 +1,12 @@
 import Together from "together-ai";
 import fs from "fs";
+import dotenv from "dotenv";
+dotenv.config();
+
 
 export async function ocr({
   filePath,
-  apiKey = 'e98141a1fc36763d0c5654648333c5ed25f758cdd1ad1794fc1589cd92dd1c56',
+  apiKey = process.env.OCR_API_KEY,
   model = "Llama-3.2-90B-Vision",
 }) {
   const visionLLM =
