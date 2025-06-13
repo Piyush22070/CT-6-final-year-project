@@ -1,0 +1,61 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+*.log
+
+# Environment
+.env
+.venv/
+venv/
+ENV/
+env.bak/
+.env.bak
+*.env
+
+# Jupyter Notebooks
+.ipynb_checkpoints/
+
+# Streamlit cache
+.streamlit/
+.cache/
+**/.cache/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# VSCode / PyCharm
+.vscode/
+.idea/
+
+# PDF/image temp
+*.pdf
+*.png
+*.jpg
+*.jpeg
+
+# Model data
+*.h5
+*.pt
+*.pth
+*.ckpt
+
+# Tokenizer/cache from HuggingFace
+tokenizer_config.json
+special_tokens_map.json
+pytorch_model.bin
+config.json
+
+# If using Huggingface datasets or transformers cache
+~/.cache/huggingface/
+~/.huggingface/
+
+# Mac/Linux/Windows specific
+*.swp
+*.bak
+*.tmp
