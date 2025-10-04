@@ -16,4 +16,11 @@ requests
 huggingface-hub>=0.20.0
 google-generativeai
 python-dotenv
-
+fastapi
+uvicorn[standard]
+python-dotenv
+google-generative-ai
+PyPDF2
+pdf2image
+Pillow
+python-multipart
