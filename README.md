@@ -212,7 +212,9 @@ Use this base URL to make requests from the frontend to the FastAPI server.
 
 ## Screenshots
 
+<img width="1600" height="865" alt="image" src="https://github.com/user-attachments/assets/63cb4d6b-c9a8-431a-a10e-8bc771a6a3b2" />
 
+<img width="958" height="915" alt="image" src="https://github.com/user-attachments/assets/76c1723c-24c0-4bec-8fa0-cc7070eea475" />
 
 ---
 
