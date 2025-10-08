@@ -1,3 +1,5 @@
+// /app/api/your-route/route.ts
+
 import { NextRequest, NextResponse } from 'next/server';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
@@ -8,13 +10,27 @@ interface StudentInfo {
   fileName: string;
 }
 
+// ✅ UPDATED: Define a type for the Python API response
+interface EvaluatorApiResponse {
+  total_marks: number;
+  max_possible_marks: number;
+  // This structure now matches the new API response: e.g., { "Q1": { "A": 7.1, "B": 0 } }
+  scoreBreakdown: { 
+    [mainQuestion: string]: { 
+      [subQuestion: string]: number 
+    } 
+  };
+  model_answers_structured: { [key: string]: string };
+  student_answers_structured: { [key: string]: string };
+}
+
+
 export async function POST(request: NextRequest) {
   console.log("\n🚀 Received new direct PDF evaluation request.");
 
   try {
     const formData = await request.formData();
     
-    // ✅ FIX 1: Add checks to make sure form data exists before using it.
     const subjectId = formData.get('subjectId') as string;
     const modelAnswerFile = formData.get('modelAnswer') as File | null;
     const studentInfoValue = formData.get('studentInfo') as string | null;
@@ -30,7 +46,6 @@ export async function POST(request: NextRequest) {
       throw new Error("EVALUATOR_API environment variable is not set.");
     }
     
-    // ✅ FIX 2: Read the model answer into a buffer ONCE before the loop.
     const modelAnswerBuffer = await modelAnswerFile.arrayBuffer();
     
     const fileToStudentMap = new Map(studentInfoList.map(info => [info.fileName, info.studentId]));
@@ -46,7 +61,6 @@ export async function POST(request: NextRequest) {
       console.log(`[ studentId: ${studentId} ] ➡️ 1. Starting evaluation.`);
       const apiFormData = new FormData();
 
-      // ✅ FIX 3: Create a new Blob from the buffer for each request.
       apiFormData.append('modelAnswerSheet', new Blob([modelAnswerBuffer]), modelAnswerFile.name);
       apiFormData.append('handwrittenAnswerSheet', studentFile);
 
@@ -61,7 +75,7 @@ export async function POST(request: NextRequest) {
         throw new Error(`API failed for student ${studentId}: ${errorBody}`);
       }
 
-      const result = await apiResponse.json();
+      const result: EvaluatorApiResponse = await apiResponse.json();
       console.log(`[ studentId: ${studentId} ] ✨ 3. Received evaluation. Score: ${result.total_marks}`);
       
       console.log(`[ studentId: ${studentId} ] 💾 4. Creating new document in Firestore...`);
@@ -70,7 +84,7 @@ export async function POST(request: NextRequest) {
           subjectId: subjectId,
           marks: result.total_marks,
           totalMarksPossible: result.max_possible_marks,
-          scoreBreakdown: result.question_wise_scores,
+          scoreBreakdown: result.scoreBreakdown, // This now saves the new nested object correctly
           status: 'evaluated',
           evaluatedAt: serverTimestamp(),
       });

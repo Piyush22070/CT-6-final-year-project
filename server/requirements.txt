@@ -1,12 +1,21 @@
+# UI
 streamlit
+
+# PDF and image handling
 PyPDF2
 pdf2image
 Pillow
+
+# NLP & Transformers
 sentence-transformers==4.1.0
 transformers==4.41.0
 torch>=2.0.0
-tensorflow==2.16.1
+
+# TensorFlow (Apple Silicon build)
+tensorflow-macos==2.15.0
 tf-keras
+
+# Core dependencies
 protobuf>=3.20.3,<4.21.0
 scikit-learn
 tqdm
@@ -14,13 +23,10 @@ numpy
 scipy
 requests
 huggingface-hub>=0.20.0
+
+# Google AI & FastAPI
 google-generativeai
 python-dotenv
 fastapi
 uvicorn[standard]
-python-dotenv
-google-generative-ai
-PyPDF2
-pdf2image
-Pillow
 python-multipart

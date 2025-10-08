@@ -9,7 +9,6 @@ class SemanticAnalyzer:
     def calculate_similarity(self, text1: str, text2: str) -> dict:
         embeddings = self.model.encode([text1, text2])
         cosine_sim = cosine_similarity([embeddings[0]], [embeddings[1]])[0][0]
-        manhattan_dist = paired_manhattan_distances([embeddings[0]], [embeddings[1]])[0]
         return {
             "cosine_similarity": float(cosine_sim),
         }
