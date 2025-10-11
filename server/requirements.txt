@@ -1,32 +1,18 @@
-# UI
-streamlit
-
-# PDF and image handling
-PyPDF2
-pdf2image
-Pillow
-
-# NLP & Transformers
-sentence-transformers==4.1.0
-transformers==4.41.0
-torch>=2.0.0
-
-# TensorFlow (Apple Silicon build)
-tensorflow-macos==2.15.0
-tf-keras
-
-# Core dependencies
-protobuf>=3.20.3,<4.21.0
-scikit-learn
-tqdm
-numpy
-scipy
-requests
-huggingface-hub>=0.20.0
-
-# Google AI & FastAPI
-google-generativeai
-python-dotenv
+# --- Web Server & API ---
 fastapi
 uvicorn[standard]
 python-multipart
+
+# --- Core AI/ML Models & Logic ---
+google-generativeai         # For OCR with Gemini
+sentence-transformers       # For Semantic Analysis (uses PyTorch)
+torch>=2.0.0                # The backend for sentence-transformers
+transformers                # A dependency of sentence-transformers
+scikit-learn                # For Thematic Analysis
+nltk                        # For Thematic Analysis tokenization
+
+# --- Utilities & File Handling ---
+python-dotenv               # For loading API keys from .env file
+pdf2image                    # To convert PDF pages to images for OCR
+Pillow                      # A dependency for pdf2image
+numpy                       # A core dependency for most ML libraries
