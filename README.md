@@ -241,7 +241,8 @@ The `/evaluate` endpoint returns a detailed JSON object that follows the `Detail
 
 <img width="1600" height="865" alt="image" src="https://github.com/user-attachments/assets/63cb4d6b-c9a8-431a-a10e-8bc771a6a3b2](https://github.com/user-attachments/assets/63cb4d6b-c9a8-431a-a10e-8bc771a6a3b2" />
 
-<img width="958" height="915" alt="image" src="https://github.com/user-attachments/assets/76c1723c-24c0-4bec-8fa0-cc7070eea475](https://github.com/user-attachments/assets/76c1723c-24c0-4bec-8fa0-cc7070eea475" />
+<img width="1041" height="841" alt="image" src="https://github.com/user-attachments/assets/7b87c922-5bbe-4c79-8cff-8603665c8c8a" />
+
 
 -----
 
